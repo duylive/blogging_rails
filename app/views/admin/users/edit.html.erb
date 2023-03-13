@@ -1,0 +1,7 @@
+<h1>Edit User</h1>
+<%= form_for [:admin, @user] do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.submit "Save Changes" %>
+<% end %>

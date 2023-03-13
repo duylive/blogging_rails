@@ -34,9 +34,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    flash[:success] = "Comment was successfully deleted."
-    redirect_to post_path(@post)
+    if current_user.admin? || @comment.user == current_user
+      @comment = Comment.find(params[:id])
+      @post = @comment.post
+      @comment.destroy
+      flash[:success] = "Comment was successfully deleted."
+      redirect_to post_path(@post)
+    else
+      flash[:error] = "You don't have permission to delete this comment."
+      redirect_to post_path(@post)
+    end
   end
 
   private

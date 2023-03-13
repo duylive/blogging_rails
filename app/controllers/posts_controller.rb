@@ -38,9 +38,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    flash[:success] = "Post was successfully deleted."
-    redirect_to posts_url
+    if current_user.admin? || @post.user == current_user
+      @post.destroy
+      flash[:success] = "Post was successfully deleted."
+      redirect_to posts_url
+    else
+      flash[:error] = "You don't have permission to delete this post."
+      redirect_to posts_url
+    end
   end
 
   private
