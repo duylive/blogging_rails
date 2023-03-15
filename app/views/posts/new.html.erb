@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'new_post' %>
 <h1>New Post</h1>
 <%= form_with model: @post, url: posts_path do |form| %>
   <% if @post.errors.any? %>
@@ -19,7 +20,7 @@
     <%= form.text_area :content %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button-submit" %>
   </div>
 <% end %>
 <p><%= link_to "Back", posts_path %></p>

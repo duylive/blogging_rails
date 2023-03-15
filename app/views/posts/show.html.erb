@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'show_post' %>
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 <p>Created at: <%= @post.created_at.strftime("%B %d, %Y") %></p>
@@ -7,6 +8,7 @@
   <p><%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "Back", posts_path %> | <%= link_to "Delete",  post_path(@post) , data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></p>
 <% end %>
 <!--<p><%#= link_to "Edit", edit_post_path(@post) %> | <%#= link_to "Back", posts_path %> | <%#= link_to "Delete",  post_path(@post) , data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></p>-->
+<hr>
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
   <div class="card mb-2">
@@ -15,14 +17,14 @@
       <div class="d-flex justify-content-between">
         <small><%= time_ago_in_words(comment.created_at) %> ago</small>
         <% if current_user.admin? || comment.user == current_user %>
-          <%= link_to 'Edit', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-secondary mr-2" %>
+          <%= link_to 'Edit', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-secondary mr-2" %> |
           <%= link_to 'Delete', post_comment_path(@post, comment), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
-
+<hr>
 <%= form_with(model: [@post, Comment.new], local: true) do |form| %>
   <%= form.text_area :content, placeholder: "Write a comment..." %>
   <%= form.submit "Post", class: "btn btn-primary" %>

@@ -25,7 +25,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
+    @comment = Comment.find_by_id(params[:id])
+    @post = @comment.post
+    if @comment && @comment.update(comment_params)
       flash[:success] = "Comment was successfully updated."
       redirect_to post_path(@post)
     else
@@ -47,6 +49,13 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+  def set_comment
+    @post = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content)

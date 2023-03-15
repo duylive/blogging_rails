@@ -1,0 +1,32 @@
+h1 {
+    color: #730E15;
+}
+
+.field label,
+.field input[type="text"] {
+    display: block;
+
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field input {
+    width: 200px;
+    height: 20px;
+}
+
+.field textarea {
+    width: 200px;
+    height: 100px;
+}
+
+.actions {
+    margin-top: 30px;
+}
+
+.button-submit {
+    width: 100px;
+    height: 20px;
+}

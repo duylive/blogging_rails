@@ -1,5 +1,6 @@
+<%= stylesheet_link_tag 'main_post' %>
 <h1>All Posts</h1>
-<table>
+<table class="table-post">
   <thead>
   <tr>
     <th>Title</th>
@@ -19,4 +20,4 @@
   <% end %>
   </tbody>
 </table>
-<p><%= link_to "New Post", new_post_path %></p>
+<button class="button-create"><%= link_to "New Post", new_post_path %></button>
