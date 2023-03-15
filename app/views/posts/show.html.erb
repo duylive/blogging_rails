@@ -4,8 +4,10 @@
 <p>Created at: <%= @post.created_at.strftime("%B %d, %Y") %></p>
 <p>Updated at: <%= @post.updated_at.strftime("%B %d, %Y") %></p>
 
-<% if current_user.admin? || @post.user == current_user %>
+<% if @post.user == current_user %>
   <p><%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "Back", posts_path %> | <%= link_to "Delete",  post_path(@post) , data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></p>
+  <% elsif current_user.admin? %>
+  <p><%= link_to "Back", posts_path %> | <%= link_to "Delete",  post_path(@post) , data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></p>
 <% end %>
 <!--<p><%#= link_to "Edit", edit_post_path(@post) %> | <%#= link_to "Back", posts_path %> | <%#= link_to "Delete",  post_path(@post) , data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></p>-->
 <hr>
@@ -16,8 +18,10 @@
       <p class="card-text"><%= comment.content %></p>
       <div class="d-flex justify-content-between">
         <small><%= time_ago_in_words(comment.created_at) %> ago</small>
-        <% if current_user.admin? || comment.user == current_user %>
+        <% if comment.user == current_user %>
           <%= link_to 'Edit', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-secondary mr-2" %> |
+          <%= link_to 'Delete', post_comment_path(@post, comment), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+          <% elsif current_user.admin? %>
           <%= link_to 'Delete', post_comment_path(@post, comment), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
         <% end %>
       </div>
