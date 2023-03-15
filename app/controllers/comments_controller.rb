@@ -36,6 +36,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find_by_id(params[:id])
     if current_user.admin? || @comment.user == current_user
       @comment = Comment.find(params[:id])
       @post = @comment.post
@@ -54,7 +55,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
   def set_comment
-    @post = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params
