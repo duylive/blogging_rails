@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :users, only: [:edit, :update]
+
   get '/profile', to: 'profile#show'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -11,6 +11,8 @@
   <p>Email: <%= @user.email %></p>
 <% end %>
 
+<%= image_tag current_user.avatar_url %>
+
 <h2>Posts</h2>
 <ul>
   <!--  Sử dụng any? hoặc exists?-->

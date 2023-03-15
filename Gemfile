@@ -78,3 +78,5 @@ gem "bootstrap-sass", "~> 3.3.6"
 gem 'haml'
 gem 'bootstrap', '~> 5.1.3'
 gem 'devise', groups: [:development, :production]
+gem 'carrierwave', groups: [:development, :production]
+gem 'mini_magick'
