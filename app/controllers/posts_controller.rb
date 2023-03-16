@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(10)
   end
 
   def show

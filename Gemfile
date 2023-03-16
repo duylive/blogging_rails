@@ -80,3 +80,4 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'devise', groups: [:development, :production]
 gem 'carrierwave', groups: [:development, :production]
 gem 'mini_magick'
+gem 'kaminari', groups: [:development, :production]

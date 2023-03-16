@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @users = User.where(admin: [false, nil])
+  end
+
   def update
     @user = current_user
     if @user.update(user_params)

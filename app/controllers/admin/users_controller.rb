@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin!
   def index
     @users = User.all
   end
@@ -30,5 +31,9 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :role)
+  end
+
+  def authorize_admin!
+    redirect_to new_user_session_path, alert: "You must be an admin to access this page." unless current_user.admin?
   end
 end

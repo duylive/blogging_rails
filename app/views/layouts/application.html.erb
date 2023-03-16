@@ -11,8 +11,11 @@
   </head>
 
   <body>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+  <% flash.each do |key, value| %>
+    <div class="alert <%= flash_class(key) %> alert-dismissible fade show" role="alert">
+      <%= value %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <% end %>
   <%= yield %>
   </body>
